@@ -1,6 +1,5 @@
-
-import Hero from '@/components/Hero/Hero';
 import React from 'react';
+import Hero from '@/components/Hero/Hero';
 import Products from '@/components/Products/Products';
 import Reviews from '@/components/Review/Reviews';
 import OrderForm from '@/components/OrderForm/OrderForm';

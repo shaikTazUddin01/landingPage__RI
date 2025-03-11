@@ -28,10 +28,18 @@ const OrderForm = () => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [name]: value
-        });
+        }));
+        
+        // Clear error when user starts typing
+        if (errors[name as keyof FormErrors]) {
+            setErrors(prev => ({
+                ...prev,
+                [name]: undefined
+            }));
+        }
     };
 
     const handleQuantityChange = (type: 'increase' | 'decrease') => {
@@ -44,41 +52,67 @@ const OrderForm = () => {
     const handleQuantityInput = (e: ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value);
         if (!isNaN(value)) {
-            setFormData({
-                ...formData,
+            setFormData(prev => ({
+                ...prev,
                 quantity: Math.min(10, Math.max(1, value))
-            });
+            }));
         }
     };
 
-    const validate = (): boolean => {
+    const validateForm = (): boolean => {
         const newErrors: FormErrors = {};
         
-        if (!formData.name) newErrors.name = 'Name is required';
-        if (!formData.phone) newErrors.phone = 'Phone number is required';
-        if (!formData.address) newErrors.address = 'Address is required';
+        if (!formData.name.trim()) newErrors.name = 'Please enter your full name';
+        if (!formData.phone.trim()) {
+            newErrors.phone = 'Please enter your phone number';
+        } else if (!/^\+?[\d\s-]{10,}$/.test(formData.phone.trim())) {
+            newErrors.phone = 'Please enter a valid phone number';
+        }
+        if (!formData.address.trim()) newErrors.address = 'Please enter your delivery address';
         
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (validate()) {
-            console.log('Order Details:', {
-                customerName: formData.name,
-                phoneNumber: formData.phone,
-                deliveryAddress: formData.address,
-                productDetails: {
-                    name: 'Royal Enfield Helmet',
-                    color: formData.color,
-                    quantity: formData.quantity,
-                    pricePerUnit: PRICE,
-                    totalAmount: PRICE * formData.quantity
-                },
-                paymentMethod: 'Cash on Delivery'
-            });
-            alert('Order submitted successfully!');
+        if (validateForm()) {
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                const orderDetails = {
+                    customerInfo: {
+                        name: formData.name,
+                        phone: formData.phone,
+                        deliveryAddress: formData.address,
+                    },
+                    productDetails: {
+                        name: 'Royal Enfield Helmet',
+                        color: formData.color,
+                        quantity: formData.quantity,
+                        pricePerUnit: PRICE,
+                        totalAmount: PRICE * formData.quantity
+                    },
+                    paymentMethod: 'Cash on Delivery',
+                    orderDate: new Date().toISOString()
+                };
+
+                console.log('Order processed successfully:', orderDetails);
+                alert('Thank you for your order! We will contact you shortly for confirmation.');
+                
+                // Reset form
+                setFormData({
+                    name: '',
+                    phone: '',
+                    address: '',
+                    color: 'black',
+                    quantity: 1
+                });
+            } catch (error) {
+                console.error('Order processing failed:', error);
+                alert('Sorry, there was an error processing your order. Please try again.');
+            }
         }
     };
 
@@ -93,19 +127,20 @@ const OrderForm = () => {
     ];
 
     return (
-        <div className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 font-inter">
-            <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-extrabold text-gray-900">
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
                         Place Your Order
                     </h2>
+                    <p className="mt-4 text-lg text-gray-600">Complete your purchase with our secure checkout process</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div className="bg-white p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:shadow-2xl">
+                        <form onSubmit={handleSubmit} className="space-y-8">
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="name" className="block text-sm font-semibold text-gray-700">
                                     Full Name
                                 </label>
                                 <input
@@ -114,13 +149,13 @@ const OrderForm = () => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className={`mt-1 block w-full border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                                    className={`mt-2 block w-full border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base transition duration-150 ease-in-out`}
                                 />
-                                {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+                                {errors.name && <p className="mt-2 text-sm text-red-600">{errors.name}</p>}
                             </div>
 
                             <div>
-                                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="phone" className="block text-sm font-semibold text-gray-700">
                                     Phone Number
                                 </label>
                                 <input
@@ -129,13 +164,13 @@ const OrderForm = () => {
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleChange}
-                                    className={`mt-1 block w-full border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                                    className={`mt-2 block w-full border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base transition duration-150 ease-in-out`}
                                 />
-                                {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+                                {errors.phone && <p className="mt-2 text-sm text-red-600">{errors.phone}</p>}
                             </div>
 
                             <div>
-                                <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="address" className="block text-sm font-semibold text-gray-700">
                                     Delivery Address
                                 </label>
                                 <input
@@ -144,37 +179,39 @@ const OrderForm = () => {
                                     name="address"
                                     value={formData.address}
                                     onChange={handleChange}
-                                    className={`mt-1 block w-full border ${errors.address ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+                                    className={`mt-2 block w-full border ${errors.address ? 'border-red-500' : 'border-gray-300'} rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base transition duration-150 ease-in-out`}
                                 />
-                                {errors.address && <p className="mt-1 text-sm text-red-600">{errors.address}</p>}
+                                {errors.address && <p className="mt-2 text-sm text-red-600">{errors.address}</p>}
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Color
+                                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                                    Select Color
                                 </label>
-                                <div className="flex space-x-4">
+                                <div className="flex space-x-6">
                                     {colors.map(color => (
                                         <button
                                             key={color.value}
                                             type="button"
-                                            onClick={() => setFormData({...formData, color: color.value})}
-                                            className={`w-8 h-8 rounded-full ${color.bg} ${formData.color === color.value ? 'ring-2 ring-offset-2 ring-indigo-500' : ''}`}
+                                            onClick={() => setFormData(prev => ({...prev, color: color.value}))}
+                                            className={`w-7 h-7 rounded-full ${color.bg} ${formData.color === color.value ? 'ring-4 ring-offset-2 ring-indigo-500' : ''} transform transition-all duration-200 hover:scale-110`}
                                             title={color.label}
+                                            aria-label={`Select ${color.label} color`}
                                         />
                                     ))}
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-semibold text-gray-700 mb-3">
                                     Quantity
                                 </label>
-                                <div className="flex items-center space-x-4">
+                                <div className="flex items-center space-x-6">
                                     <button
                                         type="button"
                                         onClick={() => handleQuantityChange('decrease')}
-                                        className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300"
+                                        className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors duration-200 text-lg font-medium"
+                                        aria-label="Decrease quantity"
                                     >
                                         -
                                     </button>
@@ -185,12 +222,14 @@ const OrderForm = () => {
                                         max="10"
                                         value={formData.quantity}
                                         onChange={handleQuantityInput}
-                                        className="w-10 h-10 text-center"
+                                        className="w-16 h-12 text-center flex font-semibold border-2 border-gray-300 rounded-lg"
+                                        aria-label="Quantity"
                                     />
                                     <button
                                         type="button"
                                         onClick={() => handleQuantityChange('increase')}
-                                        className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300"
+                                        className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors duration-200 text-lg font-medium"
+                                        aria-label="Increase quantity"
                                     >
                                         +
                                     </button>
@@ -199,31 +238,34 @@ const OrderForm = () => {
 
                             <button
                                 type="submit"
-                                className="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="w-full bg-indigo-600 text-white rounded-xl py-3 px-6 text-[16px] font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transform transition-all duration-200 hover:-translate-y-1"
                             >
                                 Place Order
                             </button>
                         </form>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h3 className="text-lg font-medium text-gray-900 mb-4">Order Summary</h3>
-                        <div className="space-y-4">
+                    <div className="bg-white p-8 rounded-2xl shadow-xl h-fit lg:sticky lg:top-8">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-6">Order Summary</h3>
+                        <div className="space-y-6">
                             <div className="flex justify-between items-start">
                                 <div>
-                                    <h4 className="font-medium">Royal Enfield Helmet</h4>
-                                    <p className="text-sm text-gray-500">Color: {formData.color}</p>
-                                    <p className="text-sm text-gray-500">Quantity: {formData.quantity}</p>
+                                    <h4 className="text-xl font-semibold">Royal Enfield Helmet</h4>
+                                    <p className="text-gray-600 mt-2">Color: <span className="capitalize">{formData.color}</span></p>
+                                    <p className="text-gray-600">Quantity: {formData.quantity}</p>
                                 </div>
-                                <p className="font-medium">${PRICE}</p>
+                                <p className="text-xl font-bold">${PRICE}</p>
                             </div>
                             
-                            <div className="border-t pt-4">
-                                <div className="flex justify-between text-base font-medium text-gray-900">
+                            <div className="border-t-2 pt-6">
+                                <div className="flex justify-between text-xl font-bold text-gray-900">
                                     <p>Total Amount</p>
                                     <p>${total.toFixed(2)}</p>
                                 </div>
-                                <p className="mt-1 text-lg text-green-600">Cash on Delivery</p>
+                                <p className="mt-4 text-lg font-medium text-green-600 flex items-center">
+                                    <span className="mr-2">✓</span>
+                                    Cash on Delivery Available
+                                </p>
                             </div>
                         </div>
                     </div>
