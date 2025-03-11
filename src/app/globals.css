@@ -1,2 +1,5 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+/* Custom styles can be added below */
 
