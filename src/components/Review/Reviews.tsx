@@ -51,9 +51,15 @@ const ReviewSection = () => {
   return (
     <section className="w-full py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
+
+      <div className="text-center mb-16">
+          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
           Customer Testimonials
-        </h2>
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            Hear what our satisfied customers have to say about their experience
+          </p>
+        </div>
         <Swiper
           spaceBetween={30}
           slidesPerView={1}

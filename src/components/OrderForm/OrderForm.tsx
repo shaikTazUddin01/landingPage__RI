@@ -135,21 +135,21 @@ const OrderSection = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+        <header className="text-center mb-16">
+          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
             Place Your Order
-          </h2>
+          </h1>
           <p className="mt-4 text-lg text-gray-600">
             Complete your purchase with our secure checkout process
           </p>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="bg-white p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:shadow-2xl">
+        <main className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <article className="bg-white p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-8">
-              <div>
+              <fieldset>
                 <label
                   htmlFor="name"
                   className="block text-sm font-semibold text-gray-700"
@@ -169,9 +169,9 @@ const OrderSection = () => {
                 {errors.name && (
                   <p className="mt-2 text-sm text-red-600">{errors.name}</p>
                 )}
-              </div>
+              </fieldset>
 
-              <div>
+              <fieldset>
                 <label
                   htmlFor="phone"
                   className="block text-sm font-semibold text-gray-700"
@@ -191,9 +191,9 @@ const OrderSection = () => {
                 {errors.phone && (
                   <p className="mt-2 text-sm text-red-600">{errors.phone}</p>
                 )}
-              </div>
+              </fieldset>
 
-              <div>
+              <fieldset>
                 <label
                   htmlFor="address"
                   className="block text-sm font-semibold text-gray-700"
@@ -213,12 +213,12 @@ const OrderSection = () => {
                 {errors.address && (
                   <p className="mt-2 text-sm text-red-600">{errors.address}</p>
                 )}
-              </div>
+              </fieldset>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">
+              <fieldset>
+                <legend className="block text-sm font-semibold text-gray-700 mb-3">
                   Select Color
-                </label>
+                </legend>
                 <div className="flex space-x-6">
                   {colors.map((color) => (
                     <button
@@ -237,12 +237,12 @@ const OrderSection = () => {
                     />
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">
+              <fieldset>
+                <legend className="block text-sm font-semibold text-gray-700 mb-3">
                   Quantity
-                </label>
+                </legend>
                 <div className="flex items-center space-x-6">
                   <button
                     type="button"
@@ -271,7 +271,7 @@ const OrderSection = () => {
                     +
                   </button>
                 </div>
-              </div>
+              </fieldset>
 
               <button
                 type="submit"
@@ -280,27 +280,27 @@ const OrderSection = () => {
                 Place Order
               </button>
             </form>
-          </div>
+          </article>
 
-          <div className="bg-white p-8 rounded-2xl shadow-xl h-fit lg:sticky lg:top-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+          <aside className="bg-white p-8 rounded-2xl shadow-xl h-fit lg:sticky lg:top-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Order Summary
-            </h3>
+            </h2>
             <div className="space-y-6">
-              <div className="flex justify-between items-start">
+              <article className="flex justify-between items-start">
                 <div>
-                  <h4 className="text-xl font-semibold">
+                  <h3 className="text-xl font-semibold">
                     Royal Enfield Helmet
-                  </h4>
+                  </h3>
                   <p className="text-gray-600 mt-2">
                     Color: <span className="capitalize">{formData.color}</span>
                   </p>
                   <p className="text-gray-600">Quantity: {formData.quantity}</p>
                 </div>
                 <p className="text-xl font-bold">${PRICE}</p>
-              </div>
+              </article>
 
-              <div className="border-t-2 pt-6">
+              <footer className="border-t-2 pt-6">
                 <div className="flex justify-between text-xl font-bold text-gray-900">
                   <p>Total Amount</p>
                   <p>${total.toFixed(2)}</p>
@@ -309,12 +309,12 @@ const OrderSection = () => {
                   <span className="mr-2">✓</span>
                   Cash on Delivery Available
                 </p>
-              </div>
+              </footer>
             </div>
-          </div>
-        </div>
+          </aside>
+        </main>
       </div>
-    </div>
+    </section>
   );
 };
 
