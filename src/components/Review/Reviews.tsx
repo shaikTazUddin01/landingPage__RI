@@ -8,7 +8,7 @@ import hero2 from "@/assets/images/hero2.jpeg";
 import hero3 from "@/assets/images/hero3.jpeg";
 import { Autoplay, Navigation } from "swiper/modules";
 
-const Reviews = () => {
+const ReviewSection = () => {
   const reviews = [
     {
       id: 1,
@@ -133,4 +133,4 @@ const Reviews = () => {
   );
 };
 
-export default Reviews;
+export default ReviewSection;
