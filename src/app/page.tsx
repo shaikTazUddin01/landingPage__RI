@@ -4,6 +4,7 @@ import ReviewSection from "@/components/Review/Reviews";
 import OrderSection from "@/components/OrderForm/OrderForm";
 import About from "@/components/About/about";
 import Delivery from "@/components/Delivery/Delivery";
+import QuestionsAnswer from "@/components/Question&Answer/Q&A";
 
 export default function Page() {
   return (
@@ -11,6 +12,7 @@ export default function Page() {
      <HeroSection/>
      <About/>
      <Delivery/>
+     <QuestionsAnswer/>
      <ProductSection/>
      <ReviewSection/>
      <OrderSection/>
