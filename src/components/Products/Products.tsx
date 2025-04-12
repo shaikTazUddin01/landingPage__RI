@@ -9,41 +9,7 @@ const ProductSection = () => {
   return (
     <main className="w-full py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <figure className="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-            <Image
-              src={hero1}
-              alt="Royal Enfield Helmet - Front View"
-              className="w-full h-[300px] object-cover transform transition-transform duration-500 group-hover:scale-110"
-            />
-            <figcaption className="absolute inset-0 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </figure>
-          <figure className="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-            <Image
-              src={hero2}
-              alt="Royal Enfield Helmet - Side View"
-              className="w-full h-[300px] object-cover transform transition-transform duration-500 group-hover:scale-110"
-            />
-            <figcaption className="absolute inset-0 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </figure>
-          <figure className="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-            <Image
-              src={hero3}
-              alt="Royal Enfield Helmet - Back View"
-              className="w-full h-[300px] object-cover transform transition-transform duration-500 group-hover:scale-110"
-            />
-            <figcaption className="absolute inset-0 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </figure>
-          <figure className="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-            <Image
-              src={hero4}
-              alt="Royal Enfield Helmet - Interior View"
-              className="w-full h-[300px] object-cover transform transition-transform duration-500 group-hover:scale-110"
-            />
-            <figcaption className="absolute inset-0 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </figure>
-        </section>
-        <section className="mt-16 text-center">
+      <section className="text-center">
           <header>
             <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
               Royal Enfield Helmet
@@ -58,8 +24,8 @@ const ProductSection = () => {
               visor with pin-lock preparation.
             </p>
           </header>
-          <section className="flex flex-wrap justify-center gap-6 mb-8">
-            <div className="text-center bg-white px-10 py-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-6 mb-8 max-w-6xl mx-auto">
+            <div className="text-center bg-white px-10 py-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 ">
               <strong className="text-4xl font-bold text-gray-900 block">
                 ₹3,999
               </strong>
@@ -67,7 +33,7 @@ const ProductSection = () => {
                 Premium Collection
               </p>
             </div>
-            <div className="text-center bg-white px-10 py-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div className="text-center bg-white px-10 py-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 ">
               <strong className="text-4xl font-bold text-gray-900 block">
                 4.8/5
               </strong>
@@ -75,7 +41,7 @@ const ProductSection = () => {
                 Customer Satisfaction
               </p>
             </div>
-            <div className="text-center bg-white px-10 py-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div className="text-center bg-white px-10 py-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 ">
               <strong className="text-4xl font-bold text-gray-900 block">
                 ISI
               </strong>
@@ -83,7 +49,7 @@ const ProductSection = () => {
                 Safety Certified
               </p>
             </div>
-            <div className="text-center bg-white px-10 py-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div className="text-center bg-white px-10 py-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 ">
               <strong className="text-4xl font-bold text-gray-900 block">
                 2 Years
               </strong>
@@ -92,6 +58,40 @@ const ProductSection = () => {
               </p>
             </div>
           </section>
+        </section>
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <figure className="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 w-full">
+            <Image
+              src={hero1}
+              alt="Royal Enfield Helmet - Front View"
+              className="w-full h-[300px] object-cover transform transition-transform duration-500 group-hover:scale-110"
+            />
+            <figcaption className="absolute inset-0 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </figure>
+          <figure className="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 w-full">
+            <Image
+              src={hero2}
+              alt="Royal Enfield Helmet - Side View"
+              className="w-full h-[300px] object-cover transform transition-transform duration-500 group-hover:scale-110"
+            />
+            <figcaption className="absolute inset-0 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </figure>
+          <figure className="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 w-full">
+            <Image
+              src={hero3}
+              alt="Royal Enfield Helmet - Back View"
+              className="w-full h-[300px] object-cover transform transition-transform duration-500 group-hover:scale-110"
+            />
+            <figcaption className="absolute inset-0 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </figure>
+          <figure className="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 w-full">
+            <Image
+              src={hero4}
+              alt="Royal Enfield Helmet - Interior View"
+              className="w-full h-[300px] object-cover transform transition-transform duration-500 group-hover:scale-110"
+            />
+            <figcaption className="absolute inset-0 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </figure>
         </section>
       </div>
     </main>

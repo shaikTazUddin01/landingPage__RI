@@ -16,7 +16,7 @@ const ReviewSection = () => {
       role: "Professional Rider",
       image: hero1,
       review:
-        "The Royal Enfield helmet comfort and safety. The build quality is outstanding and the ventilation system works perfectly.",
+        "The Royal Enfield helmet comfort and safety. The build quality and the ventilation system works perfectly.",
       rating: 5,
     },
     {
@@ -43,7 +43,7 @@ const ReviewSection = () => {
       role: "Adventure Rider",
       image: hero1,
       review:
-        "Extremely durable and reliable helmet. Perfect for long rides and varying weather conditions. The comfort level is outstanding.",
+        "Extremely durable and reliable helmet. Perfect for long rides and varying weather conditions.",
       rating: 4.7,
     },
   ];
@@ -60,7 +60,8 @@ const ReviewSection = () => {
             Hear what our satisfied customers have to say about their experience
           </p>
         </div>
-        <Swiper
+       <div>
+       <Swiper
           spaceBetween={30}
           slidesPerView={1}
           loop={true}
@@ -87,8 +88,8 @@ const ReviewSection = () => {
           className="review-swiper pb-12"
         >
           {reviews.map((review) => (
-            <SwiperSlide key={review.id} className="h-full">
-              <div className="bg-white p-8 rounded-2xl shadow-lg h-full flex flex-col transform transition-transform duration-300 hover:scale-105">
+            <SwiperSlide key={review.id} className="h-full ">
+              <div className="bg-white p-8 border border-gray-200 shadow rounded-2xl h-full flex flex-col transform transition-transform duration-300 hover:scale-[1.02]">
                 <div className="flex items-start mb-2 gap-2">
                   <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-indigo-500">
                     <Image
@@ -134,6 +135,7 @@ const ReviewSection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+       </div>
       </div>
     </section>
   );

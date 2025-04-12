@@ -1,70 +1,28 @@
-"use client";
+import bg from "@/assets/images/product.jpg"
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import hero1 from "@/assets/images/hero1.jpeg";
-import hero2 from "@/assets/images/hero2.jpeg";
-import hero3 from "@/assets/images/hero3.jpeg";
-import hero4 from "@/assets/images/hero4.jpeg";
 
-import { Autoplay } from "swiper/modules";
-
-const HeroSection = () => {
+const Hero = () => {
   return (
-    <section>
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={1}
-        loop={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        modules={[Autoplay]}
-      >
-        <SwiperSlide>
-          <picture>
-            <source srcSet={hero1.src} type="image/webp" />
-            <Image
-              src={hero1}
-              alt="Hero Image 1"
-              className="w-full h-[300px] sm:h-[400px] md:h-[400px] lg:h-[450px] xl:h-[500px] object-cover"
-            />
-          </picture>
-        </SwiperSlide>
-        <SwiperSlide>
-          <picture>
-            <source srcSet={hero2.src} type="image/webp" />
-            <Image
-              src={hero2}
-              alt="Hero Image 2"
-              className="w-full h-[300px] sm:h-[400px] md:h-[400px] lg:h-[450px] xl:h-[500px] object-cover"
-            />
-          </picture>
-        </SwiperSlide>
-        <SwiperSlide>
-          <picture>
-            <source srcSet={hero3.src} type="image/webp" />
-            <Image
-              src={hero3}
-              alt="Hero Image 3"
-              className="w-full h-[300px] sm:h-[400px] md:h-[400px] lg:h-[450px] xl:h-[500px] object-cover"
-            />
-          </picture>
-        </SwiperSlide>
-        <SwiperSlide>
-          <picture>
-            <source srcSet={hero4.src} type="image/webp" />
-            <Image
-              src={hero4}
-              alt="Hero Image 4"
-              className="w-full h-[300px] sm:h-[400px] md:h-[400px] lg:h-[450px] xl:h-[500px] object-cover"
-            />
-          </picture>
-        </SwiperSlide>
-      </Swiper>
+    <section className="min-h-screen w-full bg-fixed bg-cover bg-no-repeat" style={{backgroundImage:`url(${bg.src})`}}>
+      <div className="bg-[#000000ea] min-h-screen flex justify-center items-center">
+      <div className="grid grid-cols-2 px-10 gap-10 justify-center items-center">
+       <div className="text-center space-y-[30px] px-10">
+        <h1 className="text-center text-green-500 text-4xl font-bold" >DEXE BLACK HAIR SHAMPOO
+        </h1>
+        <p className="text-center text-white text-3xl tracking-wide font-medium leading-[42px]">
+        পাকা চুল কলপ করার দিন শেষ একবার শ্যাম্পু ব্যবহার করলেই চুল হবে ন্যাচারাল কালো মাত্র ৫ মিনিটেই
+        </p>
+        <button className="bg-linear-to-tr from-yellow-500 to-green-500 px-5
+         py-2 rounded-xl text-white text-lg font-semibold">অর্ডার করুন</button>
+       </div>
+       <div>
+        <Image src={bg} alt="product" className="h-[550px] w-[550px] rounded-2xl border-r-[6px] border-b-[6px] border-green-700"/>
+       </div>
+      </div>
+      </div>
+      
     </section>
   );
 };
 
-export default HeroSection;
+export default Hero;

@@ -135,7 +135,7 @@ const OrderSection = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-16">
           <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
