@@ -51,91 +51,88 @@ const ReviewSection = () => {
   return (
     <section className="w-full py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
-
-      <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-          Customer Testimonials
-          </h2>
-          <p className="mt-4 text-lg text-gray-600">
-            Hear what our satisfied customers have to say about their experience
-          </p>
+        <div className="bg-green-500 border-2 border-white shadow-md rounded-2xl mb-6">
+          <h1 className="text-center text-3xl py-4 font-medium text-white">
+            আমাদের সম্মানিত{" "}
+            <span className="text-yellow-300">কাস্টমারদের রিভিউ💥💥</span>
+          </h1>
         </div>
-       <div>
-       <Swiper
-          spaceBetween={30}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 30,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-          }}
-          modules={[Autoplay, Navigation]}
-          navigation
-          className="review-swiper pb-12"
-        >
-          {reviews.map((review) => (
-            <SwiperSlide key={review.id} className="h-full ">
-              <div className="bg-white p-8 border border-gray-200 shadow rounded-2xl h-full flex flex-col transform transition-transform duration-300 hover:scale-[1.02]">
-                <div className="flex items-start mb-2 gap-2">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-indigo-500">
+        <div>
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+            }}
+            modules={[Autoplay, Navigation]}
+            navigation
+            className="review-swiper pb-12"
+          >
+            {reviews.map((review) => (
+              <SwiperSlide key={review.id} className="h-full ">
+                <div className="bg-white p-8 border border-gray-200 shadow rounded-2xl h-full flex flex-col transform transition-transform duration-300 hover:scale-[1.02]">
+                  <div className="flex items-start mb-2 gap-2">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-indigo-500">
+                      <Image
+                        src={review.image}
+                        alt={review.name}
+                        fill
+                        className="object-cover "
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-[16px] text-gray-900">
+                        {review.name}
+                      </h3>
+                      <p className="text-indigo-600 font-medium text-sm">
+                        {review.role}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative w-full h-56 mb-2 rounded-xl overflow-hidden">
                     <Image
                       src={review.image}
-                      alt={review.name}
+                      alt="Review Image"
                       fill
-                      className="object-cover "
+                      className="object-cover transform transition-transform duration-500 hover:scale-110"
                     />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-[16px] text-gray-900">
-                      {review.name}
-                    </h3>
-                    <p className="text-indigo-600 font-medium text-sm">
-                      {review.role}
-                    </p>
+                  <p className="text-gray-700 text-[16px] mb-2 flex-grow leading-relaxed">
+                    {review.review}
+                  </p>
+                  <div className="flex items-center">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-2xl">
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                    <span className="ml-3 text-gray-700 font-semibold">
+                      {review.rating}/5
+                    </span>
                   </div>
                 </div>
-                <div className="relative w-full h-56 mb-2 rounded-xl overflow-hidden">
-                  <Image
-                    src={review.image}
-                    alt="Review Image"
-                    fill
-                    className="object-cover transform transition-transform duration-500 hover:scale-110"
-                  />
-                </div>
-                <p className="text-gray-700 text-[16px] mb-2 flex-grow leading-relaxed">
-                  {review.review}
-                </p>
-                <div className="flex items-center">
-                  <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-2xl">
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                  <span className="ml-3 text-gray-700 font-semibold">
-                    {review.rating}/5
-                  </span>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-       </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </section>
   );

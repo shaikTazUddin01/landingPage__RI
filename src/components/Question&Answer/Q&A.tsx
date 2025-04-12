@@ -74,10 +74,10 @@ const QuestionsAnswer: FC = () => {
 
   return (
     <section
-      className="min-h-[600px] w-full bg-fixed bg-cover bg-no-repeat"
+      className="min-h-[600px] w-full bg-fixed bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${bg.src})` }}
     >
-      <div className="bg-[#000000ea] min-h-screen flex justify-center items-center p-10">
+      <div className="bg-[#000000ea] min-h-screen flex justify-center items-center p-20">
         <div className="max-w-6xl p-12 bg-white mx-auto w-full rounded-xl shadow-xl">
           <div className="bg-green-500 border-2 border-white shadow-md rounded-2xl mb-6">
             <h1 className="text-center text-3xl py-4 font-medium text-white">
