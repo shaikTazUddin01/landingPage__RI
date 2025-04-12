@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, FormEvent, ChangeEvent } from "react";
 
 interface FormData {
@@ -33,7 +34,6 @@ const OrderSection = () => {
       [name]: value,
     }));
 
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({
         ...prev,
@@ -65,14 +65,13 @@ const OrderSection = () => {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    if (!formData.name.trim()) newErrors.name = "Please enter your full name";
+    if (!formData.name.trim()) newErrors.name = "আপনার নাম লিখুন";
     if (!formData.phone.trim()) {
-      newErrors.phone = "Please enter your phone number";
-    } else if (!/^\+?[\d\s-]{10,}$/.test(formData.phone.trim())) {
-      newErrors.phone = "Please enter a valid phone number";
+      newErrors.phone = "মোবাইল নাম্বার দিন";
+    } else if (!/^[\d\s-]{10,}$/.test(formData.phone.trim())) {
+      newErrors.phone = "বৈধ নাম্বার দিন";
     }
-    if (!formData.address.trim())
-      newErrors.address = "Please enter your delivery address";
+    if (!formData.address.trim()) newErrors.address = "ঠিকানা লিখুন";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -82,7 +81,6 @@ const OrderSection = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        // Simulate API call
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
         const orderDetails = {
@@ -92,7 +90,7 @@ const OrderSection = () => {
             deliveryAddress: formData.address,
           },
           productDetails: {
-            name: "Royal Enfield Helmet",
+            name: "DXCE BLACK HAIR SHAMPOO",
             color: formData.color,
             quantity: formData.quantity,
             pricePerUnit: PRICE,
@@ -103,11 +101,8 @@ const OrderSection = () => {
         };
 
         console.log("Order processed successfully:", orderDetails);
-        alert(
-          "Thank you for your order! We will contact you shortly for confirmation."
-        );
+        alert("অর্ডার সম্পন্ন হয়েছে! খুব শীঘ্রই আপনাকে কল করা হবে।");
 
-        // Reset form
         setFormData({
           name: "",
           phone: "",
@@ -117,14 +112,12 @@ const OrderSection = () => {
         });
       } catch (error) {
         console.error("Order processing failed:", error);
-        alert(
-          "Sorry, there was an error processing your order. Please try again."
-        );
+        alert("দুঃখিত! কিছু সমস্যা হয়েছে, আবার চেষ্টা করুন।");
       }
     }
   };
 
-  const PRICE = 29.99;
+  const PRICE = 1350;
   const total = PRICE * formData.quantity;
 
   const colors = [
@@ -135,184 +128,117 @@ const OrderSection = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <header className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-            Place Your Order
-          </h1>
-          <p className="mt-4 text-lg text-gray-600">
-            Complete your purchase with our secure checkout process
-          </p>
-        </header>
+    <section className="min-h-screen bg-gray-100 py-10 px-4">
+      <div className="max-w-5xl mx-auto border-2 border-green-600 rounded-xl bg-white shadow-xl p-6">
+        <h1 className="text-center text-2xl font-bold text-green-700 mb-6">
+          অর্ডার করতে নিচের ফর্মটি পূরণ করুন
+        </h1>
 
-        <main className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <article className="bg-white p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:shadow-2xl">
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <fieldset>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-semibold text-gray-700"
-                >
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`mt-2 block w-full border ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                  } rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base transition duration-150 ease-in-out`}
-                />
-                {errors.name && (
-                  <p className="mt-2 text-sm text-red-600">{errors.name}</p>
-                )}
-              </fieldset>
-
-              <fieldset>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-semibold text-gray-700"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={`mt-2 block w-full border ${
-                    errors.phone ? "border-red-500" : "border-gray-300"
-                  } rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base transition duration-150 ease-in-out`}
-                />
-                {errors.phone && (
-                  <p className="mt-2 text-sm text-red-600">{errors.phone}</p>
-                )}
-              </fieldset>
-
-              <fieldset>
-                <label
-                  htmlFor="address"
-                  className="block text-sm font-semibold text-gray-700"
-                >
-                  Delivery Address
-                </label>
-                <input
-                  type="text"
-                  id="address"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  className={`mt-2 block w-full border ${
-                    errors.address ? "border-red-500" : "border-gray-300"
-                  } rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base transition duration-150 ease-in-out`}
-                />
-                {errors.address && (
-                  <p className="mt-2 text-sm text-red-600">{errors.address}</p>
-                )}
-              </fieldset>
-
-              <fieldset>
-                <legend className="block text-sm font-semibold text-gray-700 mb-3">
-                  Select Color
-                </legend>
-                <div className="flex space-x-6">
-                  {colors.map((color) => (
-                    <button
-                      key={color.value}
-                      type="button"
-                      onClick={() =>
-                        setFormData((prev) => ({ ...prev, color: color.value }))
-                      }
-                      className={`w-7 h-7 rounded-full ${color.bg} ${
-                        formData.color === color.value
-                          ? "ring-4 ring-offset-2 ring-indigo-500"
-                          : ""
-                      } transform transition-all duration-200 hover:scale-110`}
-                      title={color.label}
-                      aria-label={`Select ${color.label} color`}
-                    />
-                  ))}
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <legend className="block text-sm font-semibold text-gray-700 mb-3">
-                  Quantity
-                </legend>
-                <div className="flex items-center space-x-6">
-                  <button
-                    type="button"
-                    onClick={() => handleQuantityChange("decrease")}
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors duration-200 text-lg font-medium"
-                    aria-label="Decrease quantity"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    name="quantity"
-                    min="1"
-                    max="10"
-                    value={formData.quantity}
-                    onChange={handleQuantityInput}
-                    className="w-16 h-12 text-center flex font-semibold border-2 border-gray-300 rounded-lg"
-                    aria-label="Quantity"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleQuantityChange("increase")}
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors duration-200 text-lg font-medium"
-                    aria-label="Increase quantity"
-                  >
-                    +
-                  </button>
-                </div>
-              </fieldset>
-
-              <button
-                type="submit"
-                className="w-full bg-indigo-600 text-white rounded-xl py-3 px-6 text-[16px] font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transform transition-all duration-200 hover:-translate-y-1"
-              >
-                Place Order
-              </button>
-            </form>
-          </article>
-
-          <aside className="bg-white p-8 rounded-2xl shadow-xl h-fit lg:sticky lg:top-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Order Summary
-            </h2>
-            <div className="space-y-6">
-              <article className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-xl font-semibold">
-                    Royal Enfield Helmet
-                  </h3>
-                  <p className="text-gray-600 mt-2">
-                    Color: <span className="capitalize">{formData.color}</span>
-                  </p>
-                  <p className="text-gray-600">Quantity: {formData.quantity}</p>
-                </div>
-                <p className="text-xl font-bold">${PRICE}</p>
-              </article>
-
-              <footer className="border-t-2 pt-6">
-                <div className="flex justify-between text-xl font-bold text-gray-900">
-                  <p>Total Amount</p>
-                  <p>${total.toFixed(2)}</p>
-                </div>
-                <p className="mt-4 text-lg font-medium text-green-600 flex items-center">
-                  <span className="mr-2">✓</span>
-                  Cash on Delivery Available
-                </p>
-              </footer>
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <div>
+              <label htmlFor="name" className="font-semibold">আপনার নাম লিখুন</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                className={`mt-1 w-full border ${
+                  errors.name ? "border-red-500" : "border-gray-300"
+                } rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500`}
+              />
+              {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
             </div>
-          </aside>
-        </main>
+
+            <div>
+              <label htmlFor="phone" className="font-semibold">মোবাইল নাম্বার</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                className={`mt-1 w-full border ${
+                  errors.phone ? "border-red-500" : "border-gray-300"
+                } rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500`}
+              />
+              {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="address" className="font-semibold">সম্পূর্ণ ঠিকানা</label>
+              <input
+                id="address"
+                name="address"
+                type="text"
+                value={formData.address}
+                onChange={handleChange}
+                className={`mt-1 w-full border ${
+                  errors.address ? "border-red-500" : "border-gray-300"
+                } rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500`}
+              />
+              {errors.address && <p className="text-sm text-red-500 mt-1">{errors.address}</p>}
+            </div>
+
+            <div>
+              <label className="font-semibold">রং বেছে নিন</label>
+              <div className="flex space-x-4 mt-2">
+                {colors.map((color) => (
+                  <button
+                    key={color.value}
+                    type="button"
+                    onClick={() => setFormData((prev) => ({ ...prev, color: color.value }))}
+                    className={`w-8 h-8 rounded-full ${color.bg} ${
+                      formData.color === color.value ? "ring-4 ring-green-500" : ""
+                    }`}
+                  ></button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="font-semibold">সংখ্যা</label>
+              <div className="flex items-center space-x-4 mt-2">
+                <button type="button" onClick={() => handleQuantityChange("decrease")}
+                  className="w-8 h-8 bg-gray-200 rounded hover:bg-gray-300">-</button>
+                <input
+                  type="number"
+                  min={1}
+                  max={10}
+                  value={formData.quantity}
+                  onChange={handleQuantityInput}
+                  className="w-14 text-center border border-gray-300 rounded"
+                />
+                <button type="button" onClick={() => handleQuantityChange("increase")}
+                  className="w-8 h-8 bg-gray-200 rounded hover:bg-gray-300">+</button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-green-600 text-white font-semibold py-3 rounded hover:bg-green-700 transition"
+            >
+              অর্ডার করুন ৳{total}
+            </button>
+          </div>
+
+          <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+            <h2 className="text-xl font-bold mb-4">আপনার অর্ডার</h2>
+            <p className="mb-2 font-medium">প্রোডাক্ট: DXCE BLACK HAIR SHAMPOO</p>
+            <p className="mb-2">রং: {formData.color}</p>
+            <p className="mb-2">সংখ্যা: {formData.quantity}</p>
+            <p className="mb-2">মূল্য প্রতি পিস: ৳{PRICE}</p>
+            <p className="font-bold text-lg">মোট: ৳{total}</p>
+            <p className="mt-4 text-green-700 font-medium">ক্যাশ অন ডেলিভারি</p>
+          </div>
+        </form>
+
+        <div className="mt-8 text-center border-2 border-green-600 py-4 rounded-lg">
+          <p className="text-lg font-semibold">
+            বিস্তারিত জানতে কল করুন : <span className="text-red-600">01700528504</span>
+          </p>
+        </div>
       </div>
     </section>
   );

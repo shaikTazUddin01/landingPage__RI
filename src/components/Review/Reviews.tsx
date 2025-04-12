@@ -50,7 +50,7 @@ const ReviewSection = () => {
 
   return (
     <section className="w-full py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <div className="bg-green-500 border-2 border-white shadow-md rounded-2xl mb-6">
           <h1 className="text-center text-3xl py-4 font-medium text-white">
             আমাদের সম্মানিত{" "}
@@ -88,16 +88,16 @@ const ReviewSection = () => {
               <SwiperSlide key={review.id} className="h-full ">
                 <div className="bg-white p-8 border border-gray-200 shadow rounded-2xl h-full flex flex-col transform transition-transform duration-300 hover:scale-[1.02]">
                   <div className="flex items-start mb-2 gap-2">
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-indigo-500">
+                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-indigo-500">
                       <Image
                         src={review.image}
                         alt={review.name}
-                        fill
-                        className="object-cover "
+                        layout="fill"
+                        className="object-cover"
                       />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[16px] text-gray-900">
+                      <h3 className="font-semibold text-[16px] sm:text-lg text-gray-900">
                         {review.name}
                       </h3>
                       <p className="text-indigo-600 font-medium text-sm">
@@ -105,15 +105,15 @@ const ReviewSection = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="relative w-full h-56 mb-2 rounded-xl overflow-hidden">
+                  <div className="relative w-full h-56 sm:h-64 mb-2 rounded-xl overflow-hidden">
                     <Image
                       src={review.image}
                       alt="Review Image"
-                      fill
+                      layout="fill"
                       className="object-cover transform transition-transform duration-500 hover:scale-110"
                     />
                   </div>
-                  <p className="text-gray-700 text-[16px] mb-2 flex-grow leading-relaxed">
+                  <p className="text-gray-700 text-[16px] sm:text-base mb-2 flex-grow leading-relaxed">
                     {review.review}
                   </p>
                   <div className="flex items-center">

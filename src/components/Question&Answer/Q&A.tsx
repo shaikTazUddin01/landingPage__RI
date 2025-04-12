@@ -77,10 +77,10 @@ const QuestionsAnswer: FC = () => {
       className="min-h-[600px] w-full bg-fixed bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${bg.src})` }}
     >
-      <div className="bg-[#000000ea] min-h-screen flex justify-center items-center p-20">
-        <div className="max-w-6xl p-12 bg-white mx-auto w-full rounded-xl shadow-xl">
+      <div className="bg-[#000000ea] min-h-screen flex justify-center items-center px-5 md:px-10 lg:px-20 py-10">
+        <div className="max-w-6xl p-6 sm:p-10 md:p-12 bg-white mx-auto w-full rounded-xl shadow-xl">
           <div className="bg-green-500 border-2 border-white shadow-md rounded-2xl mb-6">
-            <h1 className="text-center text-3xl py-4 font-medium text-white">
+            <h1 className="text-center text-2xl sm:text-3xl py-4 font-medium text-white">
               কিছু প্রশ্ন ও <span className="text-yellow-300">উত্তর :</span>
             </h1>
           </div>
@@ -97,10 +97,9 @@ const QuestionsAnswer: FC = () => {
             ))}
           </div>
 
-          <div className=" text-center w-full pt-10">
+          <div className="text-center w-full pt-10">
             <button
-              className="bg-linear-to-tr from-yellow-500 to-green-500 px-5
-         py-2 rounded-xl text-white text-lg font-semibold"
+              className="bg-linear-to-tr from-yellow-500 to-green-500 px-5 py-2 rounded-xl text-white text-lg font-semibold"
             >
               অর্ডার করুন
             </button>
