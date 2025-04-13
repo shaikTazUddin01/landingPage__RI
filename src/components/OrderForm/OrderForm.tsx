@@ -128,7 +128,7 @@ const OrderSection = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gray-100 py-10 px-4">
+    <section className="min-h-screen bg-gray-100 py-10 px-4 text-black">
       <div className="max-w-5xl mx-auto border-2 border-green-600 rounded-xl bg-white shadow-xl p-6">
         <h1 className="text-center text-2xl font-bold text-green-700 mb-6">
           অর্ডার করতে নিচের ফর্মটি পূরণ করুন
@@ -142,6 +142,7 @@ const OrderSection = () => {
                 id="name"
                 name="name"
                 type="text"
+                placeholder="কাজি আব্দুল রোফ"
                 value={formData.name}
                 onChange={handleChange}
                 className={`mt-1 w-full border ${
@@ -156,6 +157,7 @@ const OrderSection = () => {
               <input
                 id="phone"
                 name="phone"
+                placeholder="01*********"
                 type="tel"
                 value={formData.phone}
                 onChange={handleChange}
@@ -171,6 +173,7 @@ const OrderSection = () => {
               <input
                 id="address"
                 name="address"
+                placeholder="আরএন রোড়, যশোর সদর, যশোর,খুলনা"
                 type="text"
                 value={formData.address}
                 onChange={handleChange}

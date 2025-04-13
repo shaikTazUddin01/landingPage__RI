@@ -7,7 +7,7 @@ const Hero = () => {
       className="min-h-screen w-full bg-fixed bg-cover bg-no-repeat"
       style={{ backgroundImage: `url(${bg.src})` }}
     >
-      <div className="bg-[#000000ea] min-h-screen flex justify-center items-center py-10">
+      <div className="bg-[#000000da] min-h-screen flex justify-center items-center py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 px-6 md:px-10 gap-10 justify-center items-center w-full max-w-7xl">
           <div className="text-center space-y-[30px] px-4 ">
             <h1 className="text-center text-green-500 text-4xl font-bold">
