@@ -128,7 +128,7 @@ const OrderSection = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gray-100 py-10 px-4 text-black">
+    <section className="min-h-screen bg-gray-100 py-10 px-4 text-black" id="order_section">
       <div className="max-w-5xl mx-auto border-2 border-green-600 rounded-xl bg-white shadow-xl p-6">
         <h1 className="text-center text-2xl font-bold text-green-700 mb-6">
           অর্ডার করতে নিচের ফর্মটি পূরণ করুন

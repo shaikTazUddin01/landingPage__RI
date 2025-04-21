@@ -12,39 +12,48 @@ const ReviewSection = () => {
   const reviews = [
     {
       id: 1,
-      name: "John Smith",
-      role: "Professional Rider",
+      name: "Rafiq Hossain",
+      role: "Urban Commuter",
       image: hero1,
       review:
-        "The Royal Enfield helmet comfort and safety. The build quality and the ventilation system works perfectly.",
-      rating: 5,
+        "Daily use-এর জন্য পারফেক্ট! হালকা, আরামদায়ক, আর ট্রাফিকে কনফিডেন্টলি রাইড করতে পারি।",
+      rating: 8.5,
     },
     {
       id: 2,
-      name: "Sarah Johnson",
-      role: "Motorcycle Enthusiast",
+      name: "Tania Akter",
+      role: "College Biker",
       image: hero2,
       review:
-        "I'm impressed with the attention to detail and premium feel. The helmet fits perfectly and the visibility is excellent.",
-      rating: 4.8,
+        "ডিজাইন আর কালার কম্বিনেশন অসাধারণ! আমি অনেক খোঁজার পর Blackstrom নিয়েছি – একদম সঠিক ডিসিশন।",
+      rating: 9,
     },
     {
       id: 3,
-      name: "Mike Anderson",
-      role: "Daily Commuter",
+      name: "Farhan Zayed",
+      role: "Touring Enthusiast",
       image: hero3,
       review:
-        "Best helmet I've owned so far. The noise reduction is great and the pin-lock visor system is a game-changer.",
-      rating: 4.9,
+        "Highway তে ৬০+ স্পিডেও কোনো অসুবিধা হয়নি। ভিসর ক্লিয়ার আর হেলমেট টা একদম ফিটিং।",
+      rating: 8.8,
     },
     {
       id: 4,
-      name: "Emily Chen",
-      role: "Adventure Rider",
+      name: "Nishat Jahan",
+      role: "Delivery Rider",
       image: hero1,
       review:
-        "Extremely durable and reliable helmet. Perfect for long rides and varying weather conditions.",
-      rating: 4.7,
+        "দিনে ৮-১০ ঘণ্টা বাইক চালাই – এটা মাথায় দিয়ে টেরও পাই না। এক কথায় ‘কমফোর্ট কিং’।",
+      rating: 9.2,
+    },
+    {
+      id: 5,
+      name: "Mehedi Rahman",
+      role: "Tech Vlogger",
+      image: hero1,
+      review:
+        "Vlog করতে গিয়ে যেটা দরকার – Noise reduction আর GoPro-মাউন্ট সাপোর্ট, দুইটাই পেলাম। Highly recommend!",
+      rating: 9.1,
     },
   ];
 
@@ -88,7 +97,7 @@ const ReviewSection = () => {
               <SwiperSlide key={review.id} className="h-full ">
                 <div className="bg-white p-8 border border-gray-200 shadow rounded-2xl h-full flex flex-col transform transition-transform duration-300 hover:scale-[1.02]">
                   <div className="flex items-start mb-2 gap-2">
-                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-indigo-500">
+                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-green-500">
                       <Image
                         src={review.image}
                         alt={review.name}
@@ -100,32 +109,31 @@ const ReviewSection = () => {
                       <h3 className="font-semibold text-[16px] sm:text-lg text-gray-900">
                         {review.name}
                       </h3>
-                      <p className="text-indigo-600 font-medium text-sm">
+                      <p className="text-green-600 font-medium text-sm">
                         {review.role}
                       </p>
                     </div>
                   </div>
-                  <div className="relative w-full h-56 sm:h-64 mb-2 rounded-xl overflow-hidden">
-                    <Image
-                      src={review.image}
-                      alt="Review Image"
-                      layout="fill"
-                      className="object-cover transform transition-transform duration-500 hover:scale-110"
-                    />
-                  </div>
+                  
                   <p className="text-gray-700 text-[16px] sm:text-base mb-2 flex-grow leading-relaxed">
                     {review.review}
                   </p>
                   <div className="flex items-center">
                     <div className="flex text-yellow-400">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-2xl">
-                          ★
-                        </span>
-                      ))}
+                      {Array.from(
+                        { length: Math.floor(review.rating / 2) },
+                        (_, i) => (
+                          <span key={i} className="text-2xl">
+                            ★
+                          </span>
+                        )
+                      )}
+                      {review.rating % 2 >0 ? (
+                        <span className="text-2xl">☆</span>
+                      ) : null}
                     </div>
                     <span className="ml-3 text-gray-700 font-semibold">
-                      {review.rating}/5
+                      {review.rating}/10
                     </span>
                   </div>
                 </div>
