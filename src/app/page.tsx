@@ -5,15 +5,16 @@ import OrderSection from "@/components/OrderForm/OrderForm";
 import About from "@/components/About/about";
 import Delivery from "@/components/Delivery/Delivery";
 import QuestionsAnswer from "@/components/Question&Answer/Q&A";
+import ProductSection from "@/components/Product/product";
 
 export default function Page() {
   return (
     <div>
      <HeroSection/>
      <About/>
+     <ProductSection/>
      <Delivery/>
      <QuestionsAnswer/>
-     {/* <ProductSection/> */}
      <ReviewSection/>
      <OrderSection/>
     </div>

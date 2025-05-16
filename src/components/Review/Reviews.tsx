@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import hero1 from "@/assets/images/hero1.jpeg";
 import hero2 from "@/assets/images/hero2.jpeg";
 import hero3 from "@/assets/images/hero3.jpeg";
 import { Autoplay, Navigation } from "swiper/modules";
+import { FaUserLarge } from "react-icons/fa6";
 
 const ReviewSection = () => {
   const reviews = [
@@ -59,7 +60,7 @@ const ReviewSection = () => {
 
   return (
     <section className="w-full py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+      <div className="container mx-auto px-2 sm:px-6 md:px-8 lg:px-16">
         <div className="bg-green-500 border-2 border-white shadow-md rounded-2xl mb-6">
           <h1 className="text-center text-3xl py-4 font-medium text-white">
             আমাদের সম্মানিত{" "}
@@ -97,20 +98,18 @@ const ReviewSection = () => {
               <SwiperSlide key={review.id} className="h-full ">
                 <div className="bg-white p-8 border border-gray-200 shadow rounded-2xl h-full flex flex-col transform transition-transform duration-300 hover:scale-[1.02]">
                   <div className="flex items-start mb-2 gap-2">
-                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-green-500">
-                      <Image
-                        src={review.image}
-                        alt={review.name}
-                        layout="fill"
-                        className="object-cover"
-                      />
+                    <div className="relative w-10 h-10 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-green-500 flex justify-center items-center ">
+                      <span className="text-black text-2xl">
+                    <FaUserLarge />
+                      </span>
+
                     </div>
                     <div>
                       <h3 className="font-semibold text-[16px] sm:text-lg text-gray-900">
                         {review.name}
                       </h3>
                       <p className="text-green-600 font-medium text-sm">
-                        {review.role}
+                        {/* {review.role} */}
                       </p>
                     </div>
                   </div>

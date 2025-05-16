@@ -1,4 +1,4 @@
-import bg from "@/assets/images/product.jpg";
+import bg from "@/assets/images/bg1.jpeg";
 import Image from "next/image";
 import OrderButton from "../template/orderButton";
 
@@ -8,19 +8,14 @@ const Hero = () => {
       className="min-h-screen w-full bg-fixed bg-cover bg-no-repeat"
       style={{ backgroundImage: `url(${bg.src})` }}
     >
-      <div className="bg-[#000000da] min-h-screen flex justify-center items-center py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 px-6 md:px-10 gap-10 justify-center items-center w-full max-w-7xl">
-          <div className="text-center space-y-[30px] px-4 ">
-            <h1 className="text-center text-green-500 text-[32px] font-bold">
-              SKT DW-809 BlackStorm | Modular Lock Masterpiece Helmet
+      <div className="bg-[#000000b4] min-h-screen flex justify-center items-center py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2  md:px-10 gap-10 justify-center items-center w-full max-w-7xl">
+          <div className="text-center space-y-[20px] lg:px-4 ">
+            <h1 className="text-center text-green-500 text-4xl lg:text-[32px] font-bold lg:leading-[40px] px-2">
+              SKT DW-809 BlackStorm Helmet
             </h1>
             <p className="text-center text-white text-2xl md:text-2xl tracking-wide font-medium leading-[38px] md:leading-[32px]">
-              SKT DW-809 BlackStorm — গ্লসি ব্ল্যাক লুকে প্রিমিয়াম মডুলার
-              হেলমেট, যেটিতে আছে SS মডুলার লক, ডুয়াল ভিসর, স্মুথ সুইচ, ও DOT
-              সার্টিফিকেশন। থাকছে ঠোঁট ও মাথার জন্য কুল এয়ার ইনলেট, পেছনে হট
-              এয়ার আউটলেট, এবং অ্যান্টি-ব্যাকটেরিয়াল সফট প্যাডিং যা সাধারণত
-              হাই-এন্ড হেলমেটে ব্যবহৃত হয়। সাথে ফ্রি গিফট: অ্যান্টি-ফগ ভিসর
-              পেপার। সেফটি, স্টাইল আর কমফোর্ট — সব একসাথে SKT BlackStorm এ।
+            SKT DW-809 BlackStorm: গ্লসি ব্ল্যাক লুক, মডুলার লক, ডুয়াল ভিসর, DOT সার্টিফিকেশন, কুল এয়ার ইনলেট, অ্যান্টি-ব্যাকটেরিয়াল প্যাডিং, ও ফ্রি অ্যান্টি-ফগ ভিসর পেপার। সেফটি, স্টাইল, আরাম—সব একসাথে!
             </p>
             <OrderButton />
           </div>
